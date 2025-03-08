@@ -1,6 +1,7 @@
-import dbConnect from "@/lib/dbConnect";
+import dbConnect, { collectionNamesObj } from "@/lib/dbConnect";
 import Image from "next/image";
-// import { FaArrowRight } from "react-icons/fa6";
+import Link from "next/link";
+
 
 export default async function ServicesSection() {
     // const res = await fetch("/services.json")
@@ -162,7 +163,7 @@ export default async function ServicesSection() {
     //         ]
     //     }
     // ];
-    const serviceCollection = dbConnect("test_services");
+    const serviceCollection = dbConnect(collectionNamesObj.servicesCollection);
     const data = await serviceCollection.find({}).toArray();
     console.log("serviceCollection", data)
     return (
@@ -181,7 +182,10 @@ export default async function ServicesSection() {
                         <h2 className="card-title font-extrabold">{item.title}</h2>
                         <div className=" flex justify-evenly">
                             <p className="text-orange-500">Price : ${item.price}</p>
-                            {/* <p className="text-orange-500"><FaArrowRight /></p> */}
+                            <Link href={`/services/${item._id}`} className="text-orange-500 pl-32"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3" />
+                            </svg>
+                            </Link>
                         </div>
                     </div>
                 </div>

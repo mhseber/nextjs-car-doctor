@@ -2,6 +2,10 @@ import { MongoClient, ServerApiVersion } from "mongodb";
 
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.ox336.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority&appName=Cluster0`;
 
+export const collectionNamesObj = {
+    servicesCollection: "test_services"
+}
+
 export default function dbConnect(collectionName) {
     // Create a MongoClient with a MongoClientOptions object to set the Stable API version
     const client = new MongoClient(uri, {
